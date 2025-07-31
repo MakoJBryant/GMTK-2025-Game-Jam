@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
+  serializedVersion: 3
   tags: []
   layers:
   - Default
@@ -41,12 +41,50 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Layer 1
+  - name: Ground
     uniqueID: 2425651459
     locked: 0
-  - name: Layer 2
+  - name: Environment
     uniqueID: 4250941897
     locked: 0
-  - name: Layer 3
+  - name: Stairs
     uniqueID: 4189426099
     locked: 0
+  - name: Collideable Stairs
+    uniqueID: 1909043023
+    locked: 0
+  - name: Walls
+    uniqueID: 398745069
+    locked: 0
+  - name: Walkways
+    uniqueID: 424915605
+    locked: 0
+  - name: Trees
+    uniqueID: 1725058189
+    locked: 0
+  - name: Bushes
+    uniqueID: 703825679
+    locked: 0
+  - name: Grass
+    uniqueID: 153989667
+    locked: 0
+  - name: Rock
+    uniqueID: 1338107595
+    locked: 0
+  - name: Collideable Rocks
+    uniqueID: 1734592499
+    locked: 0
+  - name: Props
+    uniqueID: 1593899009
+    locked: 0
+  - name: Collideable Props
+    uniqueID: 413539235
+    locked: 0
+  - name: Traps
+    uniqueID: 435202369
+    locked: 0
+  - name: Other
+    uniqueID: 802464413
+    locked: 0
+  m_RenderingLayers:
+  - Default
