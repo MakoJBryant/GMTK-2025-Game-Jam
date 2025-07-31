@@ -54,7 +54,7 @@ Assets/
 │   │   └── UI/
 │   ├── Settings/                ← Tilemaps, scene data, ScriptableObjects
 │   └── Sandbox/YourName/        ← Dev work area for experiments
-├── Cainos/                      ← 3rd-party assets (do not modify)
+├── ThirdParty/                  ← 3rd-party assets (do not modify)
 ```
 
 > 🔁 The `_LOOP/` folder is the core of our project — all team edits should go here.
