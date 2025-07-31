@@ -10,7 +10,7 @@ public class ShieldRegen : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             player = collision.gameObject;
-            PlayerStats playerStats = player.GetComponent<PlayerStats>();
+            PlayerStats playerStats = player.GetComponentInParent<PlayerStats>();
             if (playerStats != null)
             {
                 if (playerStats.shield < playerStats.maxShield)
