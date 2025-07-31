@@ -11,7 +11,6 @@ public class EnemyScript : MonoBehaviour
     public float pauseAfterLunge = 0.5f;
 
     public bool chasePlayer = true;
-    private bool playerInAttackRange = false;
     private bool isAttacking = false;
 
     private Rigidbody2D rb;
@@ -20,6 +19,7 @@ public class EnemyScript : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        player = Game_Manager.instance.player.gameObject;
     }
 
     // Update is called once per frame
@@ -45,7 +45,6 @@ public class EnemyScript : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            playerInAttackRange = true;
             chasePlayer = false;
         }
     }
@@ -54,8 +53,6 @@ public class EnemyScript : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-
-            playerInAttackRange = false;
             chasePlayer = true; // Resume chasing the player when out of attack range
         }
     }
