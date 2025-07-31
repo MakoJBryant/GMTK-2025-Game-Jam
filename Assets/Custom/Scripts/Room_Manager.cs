@@ -9,7 +9,9 @@ public class Room_Manager : MonoBehaviour
     [SerializeField] private GameObject enemy;
     [SerializeField] private Transform enemyContainer;
     [SerializeField] List<Transform> entrances = new();
-    
+    [SerializeField] private int enemiesToSpawn = 10;
+    [SerializeField] private float timeBetweenSpawn;
+
     private void Start()
     {
         InitEnemyPool();
@@ -18,8 +20,7 @@ public class Room_Manager : MonoBehaviour
 
     void InitEnemyPool()
     {
-        int poolSize = Game_Manager.instance.data.enemiesToSpawn;
-        for (int i = 0; i < poolSize; i++)
+        for (int i = 0; i < enemiesToSpawn; i++)
         {
             GameObject newEnemy = Instantiate(enemy, enemyContainer);
             enemies.Add(newEnemy);
@@ -31,7 +32,7 @@ public class Room_Manager : MonoBehaviour
     {
         foreach(GameObject enemy in enemies)
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(timeBetweenSpawn);
 
             int entranceIndex = Random.Range(0, entrances.Count);
             Vector2 spawnPos = entrances[entranceIndex].position;

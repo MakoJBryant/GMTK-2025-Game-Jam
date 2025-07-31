@@ -6086,6 +6086,8 @@ MonoBehaviour:
   - {fileID: 456972470}
   - {fileID: 2000505805}
   - {fileID: 1498011538}
+  enemiesToSpawn: 10
+  timeBetweenSpawn: 1
 --- !u!1 &642935344
 GameObject:
   m_ObjectHideFlags: 0
