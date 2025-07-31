@@ -40,7 +40,7 @@ Then:
 
 ```plaintext
 Assets/
-├── _GMTKGameJam/                ← Main game content
+├── _LOOP/                       ← Main game content
 │   ├── Art/                     ← Sprites, palettes, visual assets
 │   │   ├── Sprites/
 │   │   └── Palettes/
@@ -57,7 +57,7 @@ Assets/
 ├── Cainos/                      ← 3rd-party assets (do not modify)
 ```
 
-> 🔁 The `_GMTKGameJam/` folder is the core of our project — all team edits should go here.
+> 🔁 The `_LOOP/` folder is the core of our project — all team edits should go here.
 
 ---
 
