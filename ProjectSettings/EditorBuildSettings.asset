@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_LOOP/Sandbox/Mako/TitleScene.unity
+    path: Assets/_LOOP/Scenes/TitleScene.unity
     guid: 26e1c73481e0ba84cba5b2bbfe5d9b06
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
