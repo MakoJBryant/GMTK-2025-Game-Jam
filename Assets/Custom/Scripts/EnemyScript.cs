@@ -1,9 +1,13 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyScript : MonoBehaviour
 {
     public GameObject player; // Reference to the player GameObject
+    Transform target;
+    NavMeshAgent agent;
+
     public float speed = 3f;
     public float lungeSpeed = 8f;
     public float windUp = 1f;
@@ -16,14 +20,18 @@ public class EnemyScript : MonoBehaviour
     void Start()
     {
         player = Game_Manager.instance.player.gameObject;
+        target = player.transform;
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
     }
 
     void Update()
     {
         if (!isLunging)
         {
-            Vector3 direction = (Game_Manager.instance.player.transform.position - transform.position).normalized;
-            transform.position += direction * speed * Time.deltaTime;
+            agent.SetDestination(target.position);
+            agent.speed = speed;
         }
     }
 
@@ -34,7 +42,6 @@ public class EnemyScript : MonoBehaviour
             StartCoroutine(Lunge());
         }
     }
-
 
     private IEnumerator Lunge()
     {
