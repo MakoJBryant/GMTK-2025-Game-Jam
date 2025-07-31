@@ -9,10 +9,8 @@ public class PlayerMovement : MonoBehaviour
     public float dodgeDuration = 0.5f;
     public float dodgeCooldown = 1f;
 
-    public Rigidbody2D rb;
-
-    Vector2 movement;
-    Vector2 dodgeDir;
+    Vector3 movementDirection;
+    Vector3 dodgeDirection;
 
     bool isDodging = false;
     bool canDodge = true;
@@ -25,16 +23,16 @@ public class PlayerMovement : MonoBehaviour
         if (!isDodging)
         {
             // Input
-            movement.x = Input.GetAxisRaw("Horizontal");
-            movement.y = Input.GetAxisRaw("Vertical");
-            movement.Normalize(); // Normalize to prevent faster diagonal movement
+            movementDirection.x = Input.GetAxisRaw("Horizontal");
+            movementDirection.y = Input.GetAxisRaw("Vertical");
+            movementDirection.Normalize(); // Normalize to prevent faster diagonal movement
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && canDodge && movement != Vector2.zero)
+        if (Input.GetKeyDown(KeyCode.Space) && canDodge && movementDirection != Vector3.zero)
         {
             isDodging = true;
             canDodge = false;
-            dodgeDir = movement; // Store the direction of the dodge
+            dodgeDirection = movementDirection; // Store the direction of the dodge
             dodgeTimer = dodgeDuration; // Set the end time for the dodge
         }
 
@@ -46,14 +44,10 @@ public class PlayerMovement : MonoBehaviour
                 canDodge = true; // Reset dodge ability after cooldown
             }
         }
-    }
 
-    // Fixed Timer sort of like DeltaTime
-    private void FixedUpdate()
-    {
         if (isDodging)
         {
-            rb.MovePosition(rb.position + dodgeDir * dodgeSpeed * Time.fixedDeltaTime);
+            transform.position += dodgeDirection * dodgeSpeed * Time.deltaTime;
             dodgeTimer -= Time.fixedDeltaTime;
             if (dodgeTimer <= 0)
             {
@@ -64,8 +58,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : moveSpeed;
-            rb.MovePosition(rb.position + movement * currentSpeed * Time.fixedDeltaTime);
+            transform.position += movementDirection * currentSpeed * Time.deltaTime;
         }
-
     }
 }

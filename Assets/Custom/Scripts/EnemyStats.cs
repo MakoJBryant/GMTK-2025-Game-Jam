@@ -8,19 +8,10 @@ public class EnemyStats : MonoBehaviour
     public int health, maxHealth = 100;
     public float defense = 5f;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         health = maxHealth; // Initialize health to maximum value
         playerStats = Game_Manager.instance.player.GetComponent<PlayerStats>();
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.CompareTag("Player"))
-        {
-            playerStats.TakeDamage(damage);
-        }
     }
 
     public void TakeDamage(int amount)

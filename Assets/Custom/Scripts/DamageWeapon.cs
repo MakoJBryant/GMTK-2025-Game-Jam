@@ -6,17 +6,9 @@ public class DamageWeapon : MonoBehaviour
     PlayerStats playerStats; // Reference to the PlayerStats script
     public int damage = 10; // Amount of damage dealt by the wind
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         playerStats = Game_Manager.instance.player.stats; // Get the PlayerStats instance from the Game_Manager
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void OnTriggerEnter2D(Collider2D other)

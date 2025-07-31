@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6715061194398598792
 Transform:
   m_ObjectHideFlags: 0
@@ -118,10 +118,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  speed: 5
-  lungeSpeed: 1
+  speed: 2.5
+  lungeSpeed: 5
   windUp: 1
-  lungeDuration: 0.3
+  lungeDuration: 0.5
   pauseAfterLunge: 0.5
   chasePlayer: 1
 --- !u!114 &7398806272728347585

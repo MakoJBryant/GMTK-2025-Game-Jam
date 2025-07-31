@@ -11,79 +11,47 @@ public class EnemyScript : MonoBehaviour
     public float pauseAfterLunge = 0.5f;
 
     public bool chasePlayer = true;
-    private bool isAttacking = false;
+    private bool isLunging = false;
 
-    private Rigidbody2D rb;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-/*        rb = GetComponent<Rigidbody2D>();
-        player = Game_Manager.instance.player.gameObject;*/
+        player = Game_Manager.instance.player.gameObject;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (!isAttacking)
+        if (!isLunging)
         {
-/*            Vector2 direction = (player.transform.position - transform.position);
-            direction.Normalize();
-            rb.MovePosition(rb.position + (speed * Time.deltaTime * direction));*/
-
+            Vector3 direction = (Game_Manager.instance.player.transform.position - transform.position).normalized;
+            transform.position += direction * speed * Time.deltaTime;
         }
-
-        Vector2 currentPos = transform.position;
-        Vector2 newPos = Vector2.MoveTowards(currentPos, Game_Manager.instance.player.transform.position, speed * Time.deltaTime);
-        transform.position = newPos;
     }
 
-/*    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && !isAttacking)
+        if (collision.CompareTag("Player") && !isLunging)
         {
-            StartCoroutine(AttackPlayer());
-            Debug.Log("Attacking Player");
+            StartCoroutine(Lunge());
         }
-    }*/
+    }
 
-/*    private void OnTriggerStay2D(Collider2D collision)
+
+    private IEnumerator Lunge()
     {
-        if (collision.CompareTag("Player"))
-        {
-            chasePlayer = false;
-            Debug.Log("not chasing player");
-        }
-    }*/
-
-/*    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            chasePlayer = true; // Resume chasing the player when out of attack range
-            Debug.Log("Chasing player");
-        }
-    }*/
-
-
-    private IEnumerator AttackPlayer()
-    {
-        // functionality to attack the player
-        isAttacking = true;
+        isLunging = true;
 
         yield return new WaitForSeconds(windUp);
-        Vector2 direction = (player.transform.position - transform.position).normalized;
         float timer = 0f;
 
         while (timer < lungeDuration)
         {
-            rb.MovePosition(rb.position + direction * lungeSpeed * Time.fixedDeltaTime);
+            Vector3 direction = (player.transform.position - transform.position).normalized;
+            transform.position += direction * lungeSpeed * Time.fixedDeltaTime;
             timer += Time.fixedDeltaTime;
-            Debug.Log("Lunging");
             yield return new WaitForFixedUpdate();
         }
 
-        isAttacking = false; // Reset attacking state after the attack is done
+        isLunging = false;
     }
 }
 

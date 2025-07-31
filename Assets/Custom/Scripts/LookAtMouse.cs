@@ -2,33 +2,30 @@ using UnityEngine;
 
 public class LookAtMouse : MonoBehaviour
 {
-    private Transform playerTransform;
-    private Transform m_transform;
+    private Transform hand;
     private float maxDistanceFromOrigin = .1f;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        m_transform = this.transform;
-        playerTransform = GetComponentInParent<PlayerMovement>().gameObject.transform;
+        hand = this.transform;
     }
 
-    private void Mouse()
+    private void FollowMouseInput()
     {
         Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 direction = mouseWorldPos - (Vector2)m_transform.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        Quaternion rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
-        m_transform.rotation = rotation;
+        Vector2 mouseDirection = mouseWorldPos - (Vector2)hand.position;
 
-        Vector2 dir = direction * maxDistanceFromOrigin;
-        transform.localPosition = Vector2.Lerp(transform.localPosition, dir, 10 * Time.deltaTime);
+        float angle = Mathf.Atan2(mouseDirection.y, mouseDirection.x) * Mathf.Rad2Deg;
+        Quaternion rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+        hand.rotation = rotation;
+
+        Vector2 desiredPos = mouseDirection * maxDistanceFromOrigin;
+        transform.localPosition = Vector2.Lerp(transform.localPosition, desiredPos, 10 * Time.deltaTime);
 
     }
 
-    // Update is called once per frame
     void Update()
     {
-        Mouse();
+        FollowMouseInput();
     }
 }

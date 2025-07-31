@@ -11,11 +11,8 @@ public class Game_Data
     public void IncreaseDifficulty()
     {
         difficulty *= (difficulty + difficultyRamp);
-
         spawnRate /= difficulty;
         enemiesToSpawn = Mathf.RoundToInt(enemiesToSpawn * difficulty);
-/*        spawnRate *= (spawnRate - difficultyRamp);
-        enemiesToSpawn += round + Mathf.RoundToInt(enemiesToSpawn * difficultyRamp);*/
         Debug.Log("difficulty = " + difficulty + ", spawnRate = " + spawnRate + ", enemiesToSpawn = " + enemiesToSpawn);
     }
 }
