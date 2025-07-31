@@ -12,6 +12,7 @@ public class EnemyStats : MonoBehaviour
     void Start()
     {
         health = maxHealth; // Initialize health to maximum value
+        playerStats = Game_Manager.instance.player.GetComponent<PlayerStats>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

@@ -64,7 +64,8 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : moveSpeed;
-            rb.MovePosition(rb.position + movement * currentSpeed * Time.fixedDeltaTime);
+            transform.position += (Vector3)movement * currentSpeed * Time.fixedDeltaTime;
+            //rb.MovePosition(rb.position + movement * currentSpeed * Time.fixedDeltaTime);
         }
 
     }
