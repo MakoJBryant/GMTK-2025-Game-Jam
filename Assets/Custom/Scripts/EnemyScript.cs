@@ -18,44 +18,52 @@ public class EnemyScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        player = Game_Manager.instance.player.gameObject;
+/*        rb = GetComponent<Rigidbody2D>();
+        player = Game_Manager.instance.player.gameObject;*/
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(chasePlayer && !isAttacking)
+        if (!isAttacking)
         {
-            Vector2 direction = player.transform.position - transform.position;
+/*            Vector2 direction = (player.transform.position - transform.position);
             direction.Normalize();
-            transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime); 
+            rb.MovePosition(rb.position + (speed * Time.deltaTime * direction));*/
+
         }
+
+        Vector2 currentPos = transform.position;
+        Vector2 newPos = Vector2.MoveTowards(currentPos, Game_Manager.instance.player.transform.position, speed * Time.deltaTime);
+        transform.position = newPos;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+/*    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player") && !isAttacking)
         {
             StartCoroutine(AttackPlayer());
+            Debug.Log("Attacking Player");
         }
-    }
+    }*/
 
-    private void OnTriggerStay2D(Collider2D collision)
+/*    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
             chasePlayer = false;
+            Debug.Log("not chasing player");
         }
-    }
+    }*/
 
-    private void OnTriggerExit2D(Collider2D collision)
+/*    private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
             chasePlayer = true; // Resume chasing the player when out of attack range
+            Debug.Log("Chasing player");
         }
-    }
+    }*/
 
 
     private IEnumerator AttackPlayer()
@@ -71,10 +79,10 @@ public class EnemyScript : MonoBehaviour
         {
             rb.MovePosition(rb.position + direction * lungeSpeed * Time.fixedDeltaTime);
             timer += Time.fixedDeltaTime;
+            Debug.Log("Lunging");
             yield return new WaitForFixedUpdate();
         }
 
-        yield return new WaitForSeconds(pauseAfterLunge);
         isAttacking = false; // Reset attacking state after the attack is done
     }
 }
