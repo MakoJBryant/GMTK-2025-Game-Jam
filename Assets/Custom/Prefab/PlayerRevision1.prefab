@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2386936943429061904}
   m_Layer: 0
   m_Name: PlayerRevision1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64,6 +64,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Wind: {fileID: 6758831847313666172}
+  Thunder: {fileID: 0}
+  Aim: {fileID: 0}
+  Shards: {fileID: 0}
+  fireForce: 10
 --- !u!114 &6807495822375483518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,7 +117,7 @@ GameObject:
   - component: {fileID: 7411174390521880758}
   m_Layer: 0
   m_Name: Character
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -360,7 +364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStats: {fileID: 0}
-  windDamage: 10
+  damage: 10
 --- !u!212 &3140853641011457816
 SpriteRenderer:
   m_ObjectHideFlags: 0
