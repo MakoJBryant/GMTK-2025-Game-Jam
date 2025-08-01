@@ -3,10 +3,12 @@ using UnityEngine;
 public class PlayerCollisions : MonoBehaviour
 {
     Player player;
+    Room_Manager room;
 
     private void Start()
     {
         player = Game_Manager.instance.player;
+        room = Game_Manager.instance.room;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -27,6 +29,17 @@ public class PlayerCollisions : MonoBehaviour
         {
             case "Shield":
                 player.stats.RegenShield();
+                break;
+            case "Exit":
+                int enemiesLeft = 0;
+                foreach (Transform enemy in room.enemyContainer)
+                {
+                    if (enemy.gameObject.activeInHierarchy)
+                        enemiesLeft++;
+                }
+                Debug.Log(enemiesLeft);
+                if (enemiesLeft <= 0)
+                    Game_Manager.instance.HandleWin();
                 break;
         }
     }

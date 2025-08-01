@@ -5,9 +5,8 @@ using UnityEngine;
 
 public class Room_Manager : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> enemies = new();
     [SerializeField] private GameObject enemy;
-    [SerializeField] private Transform enemyContainer;
+    public Transform enemyContainer;
     [SerializeField] List<Transform> entrances = new();
     [SerializeField] private int enemiesToSpawn = 10;
     [SerializeField] private float timeBetweenSpawn;
@@ -20,25 +19,39 @@ public class Room_Manager : MonoBehaviour
 
     void InitEnemyPool()
     {
-        for (int i = 0; i < enemiesToSpawn; i++)
+        int currentRound = Game_Manager.instance.data.round;
+        for (int i = 0; i < enemiesToSpawn + currentRound; i++)
         {
             GameObject newEnemy = Instantiate(enemy, enemyContainer);
-            enemies.Add(newEnemy);
-            newEnemy.SetActive(false);
+            enemy.SetActive(false);
+            Debug.Log("Enemy added to pool");
         }
     }
 
     IEnumerator SpawnRoutine()
     {
-        foreach(GameObject enemy in enemies)
+/*        foreach (Transform newEnemy in enemyContainer)
         {
             yield return new WaitForSeconds(timeBetweenSpawn);
 
+            newEnemy.gameObject.SetActive(true);
+
             int entranceIndex = Random.Range(0, entrances.Count);
             Vector2 spawnPos = entrances[entranceIndex].position;
-            enemy.SetActive(true);
-            enemy.transform.SetParent(null);
-            enemy.transform.position = spawnPos;
+            newEnemy.position = spawnPos;
+        }*/
+
+        for (int i = 0; i < enemyContainer.childCount; i++)
+        {
+            Transform newEnemy = enemyContainer.GetChild(i).transform;
+
+            newEnemy.gameObject.SetActive(true);
+
+            int entranceIndex = Random.Range(0, entrances.Count);
+            Vector2 spawnPos = entrances[entranceIndex].position;
+            newEnemy.position = spawnPos;
+
+            yield return new WaitForSeconds(timeBetweenSpawn);
         }
     }
 }

@@ -26,7 +26,7 @@ public class EnemyStats : MonoBehaviour
             Game_Manager.instance.audioManager.Play("Test Death"); // Play death sound
 
             // Handle enemy death (e.g., destroy object, play animation, etc.)
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

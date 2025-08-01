@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Shield
+  - Exit
   layers:
   - Default
   - TransparentFX
