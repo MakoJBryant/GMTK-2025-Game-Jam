@@ -13298,6 +13298,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 782077612}
   audioManager: {fileID: 2438479500237884587}
+  room: {fileID: 0}
 --- !u!4 &1063934968
 Transform:
   m_ObjectHideFlags: 0
@@ -15857,7 +15858,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 387edc4fa99d8964781e593a1937a87f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies: []
   enemy: {fileID: 7191062150754107682, guid: c458399c062981e479d5058367b13e07, type: 3}
   enemyContainer: {fileID: 1347429457}
   entrances:
@@ -15976,31 +15976,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8414123343689231115, guid: f2a9813763529e041b0a7671feb6683f,
-        type: 3}
-      propertyPath: sounds.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8414123343689231115, guid: f2a9813763529e041b0a7671feb6683f,
-        type: 3}
-      propertyPath: sounds.Array.data[1].vol
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8414123343689231115, guid: f2a9813763529e041b0a7671feb6683f,
-        type: 3}
-      propertyPath: sounds.Array.data[1].Clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 4a75c9c0ce097eb45ab528da84c6ae77, type: 3}
-    - target: {fileID: 8414123343689231115, guid: f2a9813763529e041b0a7671feb6683f,
-        type: 3}
-      propertyPath: sounds.Array.data[1].name
-      value: Test Death
-      objectReference: {fileID: 0}
-    - target: {fileID: 8414123343689231115, guid: f2a9813763529e041b0a7671feb6683f,
-        type: 3}
-      propertyPath: sounds.Array.data[1].pitch
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
