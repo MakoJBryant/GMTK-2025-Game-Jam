@@ -7,6 +7,7 @@ public class Game_Manager : MonoBehaviour
 
     public Player player;
     //public Game_Data data;
+    public AudioManager audioManager;
 
     private void Awake()
     {
