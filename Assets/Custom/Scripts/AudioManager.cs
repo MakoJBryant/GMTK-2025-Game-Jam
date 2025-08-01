@@ -1,18 +1,23 @@
 using UnityEngine.Audio;
 using System;
 using UnityEngine;
+using System.Runtime.CompilerServices;
+using System.Xml.Serialization;
 
 public class AudioManager : MonoBehaviour
 {
-
     public Sound[] sounds;
+    private static AudioManager instance;
 
-    public static AudioManager instance;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Awake()
+    private void Awake()
     {
-        if(instance == null)
+        CreateInstance();
+        CreateSoundsArray();
+    }
+
+    private void CreateInstance()
+    {
+        if (instance == null)
         {
             instance = this;
         }
@@ -23,15 +28,18 @@ public class AudioManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
+    }
 
-        foreach (Sound s in sounds)
+    private void CreateSoundsArray()
+    {
+        foreach (Sound sound in sounds)
         {
-            s.source = gameObject.AddComponent<AudioSource>();
-            s.source.clip = s.Clip;
+            sound.source = gameObject.AddComponent<AudioSource>();
+            sound.source.clip = sound.Clip;
 
-            s.source.volume = s.vol;
-            s.source.pitch = s.pitch;
-            s.source.loop = s.loop;
+            sound.source.volume = sound.vol;
+            sound.source.pitch = sound.pitch;
+            sound.source.loop = sound.loop;
         }
     }
 

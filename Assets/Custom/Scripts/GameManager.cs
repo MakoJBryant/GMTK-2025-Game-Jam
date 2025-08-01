@@ -2,19 +2,34 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Game_Manager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    public static Game_Manager instance;
+    public static GameManager instance;
 
     public Player player;
     public AudioManager audioManager;
-    public Room_Manager room;
-    public Game_Data data;
+    public RoomManager room;
+    public GameData data;
 
     private void Awake()
     {
-        instance = this;
-        data = new Game_Data();
+        CreateInstance();
+        data = data ?? new GameData();
+    }
+
+    private void CreateInstance()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        DontDestroyOnLoad(gameObject);
     }
 
     public void HandleWin()

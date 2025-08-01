@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
 
-public class Room_Manager : MonoBehaviour
+public class RoomManager : MonoBehaviour
 {
     [SerializeField] private GameObject enemy;
-    public Transform enemyContainer;
-    [SerializeField] List<Transform> entrances = new();
+    [SerializeField] private List<Transform> entrances = new();
     [SerializeField] private int enemiesToSpawn = 10;
     [SerializeField] private float timeBetweenSpawn;
+
+    [SerializeField] private Transform enemyContainer;
+    public Transform EnemyContainer => enemyContainer;
 
     private void Start()
     {
@@ -17,9 +19,9 @@ public class Room_Manager : MonoBehaviour
         StartCoroutine(SpawnRoutine());
     }
 
-    void InitEnemyPool()
+    private void InitEnemyPool()
     {
-        int currentRound = Game_Manager.instance.data.round;
+        int currentRound = GameManager.instance.data.round;
         for (int i = 0; i < enemiesToSpawn + currentRound; i++)
         {
             GameObject newEnemy = Instantiate(enemy, enemyContainer);
@@ -28,9 +30,9 @@ public class Room_Manager : MonoBehaviour
         }
     }
 
-    IEnumerator SpawnRoutine()
+    private IEnumerator SpawnRoutine()
     {
-/*        foreach (Transform newEnemy in enemyContainer)
+        foreach (Transform newEnemy in enemyContainer)
         {
             yield return new WaitForSeconds(timeBetweenSpawn);
 
@@ -39,19 +41,6 @@ public class Room_Manager : MonoBehaviour
             int entranceIndex = Random.Range(0, entrances.Count);
             Vector2 spawnPos = entrances[entranceIndex].position;
             newEnemy.position = spawnPos;
-        }*/
-
-        for (int i = 0; i < enemyContainer.childCount; i++)
-        {
-            Transform newEnemy = enemyContainer.GetChild(i).transform;
-
-            newEnemy.gameObject.SetActive(true);
-
-            int entranceIndex = Random.Range(0, entrances.Count);
-            Vector2 spawnPos = entrances[entranceIndex].position;
-            newEnemy.position = spawnPos;
-
-            yield return new WaitForSeconds(timeBetweenSpawn);
         }
     }
 }

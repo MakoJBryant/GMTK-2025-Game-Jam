@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 202785864187270763}
   m_Layer: 0
   m_Name: PlayerRevision1
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -54,6 +54,7 @@ MonoBehaviour:
   attack: {fileID: 0}
   movement: {fileID: 0}
   stats: {fileID: 0}
+  visualControl: {fileID: 0}
 --- !u!114 &5558091807798848664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,11 +67,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d28053e483cbab7479457ddccdac2b30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wind: {fileID: 6758831847313666172}
-  Thunder: {fileID: 8269245720326170980}
-  Aim: {fileID: 5752511665293236462}
-  Shards: {fileID: 4695891834703561966, guid: 97dbb4840154df14d9aa83503d237cfc, type: 3}
+  wind: {fileID: 6758831847313666172}
+  thunder: {fileID: 8269245720326170980}
+  attackDuration: 0.3
+  attackTimer: 0
+  aim: {fileID: 5752511665293236462}
+  shards: {fileID: 4695891834703561966, guid: 97dbb4840154df14d9aa83503d237cfc, type: 3}
   fireForce: 10
+  fireCooldown: 0.25
+  fireTimer: 0.5
 --- !u!114 &6807495822375483518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,10 +105,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3eafee44cd64a648abadb8e089e1ad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 250
-  currentHealth: 0
-  shield: 100
-  maxShield: 100
   power: 5
 --- !u!50 &2489539528506934908
 Rigidbody2D:
@@ -201,6 +202,7 @@ GameObject:
   - component: {fileID: 1266621382738255887}
   - component: {fileID: 2130355470948290746}
   - component: {fileID: 7411174390521880758}
+  - component: {fileID: 3020412049981562949}
   m_Layer: 0
   m_Name: Character
   m_TagString: Player
@@ -325,6 +327,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3020412049981562949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623881103425425330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e42b8f2b788d44c489ffe63f7697b165, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  feedbackSpeed: 15
+  feedbackTime: 0.1
+  desiredColor: {r: 1, g: 1, b: 1, a: 0}
 --- !u!1 &6758831847313666172
 GameObject:
   m_ObjectHideFlags: 0

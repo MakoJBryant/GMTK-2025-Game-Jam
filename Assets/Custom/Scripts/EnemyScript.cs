@@ -4,42 +4,47 @@ using UnityEngine.AI;
 
 public class EnemyScript : MonoBehaviour
 {
-    public GameObject player; // Reference to the player GameObject
-    Transform target;
-    NavMeshAgent agent;
+    private Player player;
+    private Transform target;
+    private NavMeshAgent agent;
 
-    public float speed = 3f;
-    public float lungeSpeed = 8f;
-    public float windUp = 1f;
-    public float lungeDuration = 0.3f;
-    public float pauseAfterLunge = 0.5f;
+    [SerializeField] private float speed = 3f;
+    [SerializeField] private float lungeSpeed = 8f;
+    [SerializeField] private float windUp = 1f;
+    [SerializeField] private float lungeDuration = 0.3f;
 
-    public bool chasePlayer = true;
     private bool isLunging = false;
 
-    void Start()
+    private void Start()
     {
-        player = Game_Manager.instance.player.gameObject;
-        target = player.transform;
+        AssignComponents();
+        AssignValues();
+    }
+
+    private void Update()
+    {
+        MovementBehavior();
+    }
+
+    private void AssignComponents()
+    {
+        player = GameManager.instance.player;
         agent = GetComponent<NavMeshAgent>();
+    }
+
+    private void AssignValues()
+    {
+        target = player.transform;
         agent.updateRotation = false;
         agent.updateUpAxis = false;
     }
 
-    void Update()
+    private void MovementBehavior()
     {
         if (!isLunging)
         {
             agent.SetDestination(target.position);
             agent.speed = speed;
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player") && !isLunging)
-        {
-            StartCoroutine(Lunge());
         }
     }
 
@@ -59,6 +64,14 @@ public class EnemyScript : MonoBehaviour
         }
 
         isLunging = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player") && !isLunging)
+        {
+            StartCoroutine(Lunge());
+        }
     }
 }
 

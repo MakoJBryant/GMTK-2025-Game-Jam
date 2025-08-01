@@ -6,19 +6,25 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f;
     public float sprintSpeed = 10f;
     public float dodgeSpeed = 7.5f;
+
     public float dodgeDuration = 0.5f;
     public float dodgeCooldown = 1f;
+    private float dodgeTimer = 0f;
+    private float cooldownTimer = 0f;
 
-    Vector3 movementDirection;
-    Vector3 dodgeDirection;
+    private bool isDodging = false;
+    private bool canDodge = true;
 
-    bool isDodging = false;
-    bool canDodge = true;
-    float dodgeTimer = 0f;
-    float cooldownTimer = 0f;
+    private Vector3 movementDirection;
+    private Vector3 dodgeDirection;
 
-    // Update is called once per frame
-    void Update()
+
+    private void Update()
+    {
+        Movement();
+    }
+
+    private void Movement()
     {
         if (!isDodging)
         {
@@ -39,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
         if (!canDodge)
         {
             cooldownTimer -= Time.deltaTime;
-            if(cooldownTimer <= 0f)
+            if (cooldownTimer <= 0f)
             {
                 canDodge = true; // Reset dodge ability after cooldown
             }
@@ -58,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : moveSpeed;
-            transform.position += movementDirection * currentSpeed * Time.deltaTime;
+            transform.position += currentSpeed * Time.deltaTime * movementDirection;
         }
     }
 }

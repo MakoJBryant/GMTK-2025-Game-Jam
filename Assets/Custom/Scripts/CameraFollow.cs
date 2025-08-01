@@ -1,24 +1,27 @@
 using UnityEngine;
 
-public class Camera_Follow : MonoBehaviour
+public class CameraFollow : MonoBehaviour
 {
-    [Range(0, 5)]
+    private Transform player;
     [SerializeField] private float lerpSpeed = 3;
-    [Range(-5, 5)]
-    [SerializeField] private float yOffset = 0;
 
-    public GameObject player; // Reference to the player GameObject
+    private void Start()
+    {
+        player = GameManager.instance.player.transform;
+    }
 
     private void Update()
     {
-        Vector3 playerPos = player.transform.position;
+        UpdateCameraPosition();
+    }
+
+    private void UpdateCameraPosition()
+    {
+        Vector3 playerPos = player.position;
         Vector3 newPos = transform.position;
 
         newPos.x = Mathf.Lerp(transform.position.x, playerPos.x, lerpSpeed * Time.deltaTime);
         newPos.y = Mathf.Lerp(transform.position.y, playerPos.y, lerpSpeed * Time.deltaTime);
-
-
-        newPos.y += yOffset; // Add offset
 
         transform.position = newPos;
     }

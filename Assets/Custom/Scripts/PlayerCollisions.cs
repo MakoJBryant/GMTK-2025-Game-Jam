@@ -2,13 +2,27 @@ using UnityEngine;
 
 public class PlayerCollisions : MonoBehaviour
 {
-    Player player;
-    Room_Manager room;
+    private Player player;
+    private RoomManager room;
+
+    private bool IsRoomEmpty()
+    {
+        int enemiesLeft = 0;
+        foreach (Transform enemy in room.EnemyContainer)
+        {
+            if (enemy.gameObject.activeInHierarchy)
+                enemiesLeft++;
+        }
+        Debug.Log("Cannot pass, " + enemiesLeft + " enemies left.");
+        if (enemiesLeft <= 0)
+            return true;
+        else return false;
+    }
 
     private void Start()
     {
-        player = Game_Manager.instance.player;
-        room = Game_Manager.instance.room;
+        player = GameManager.instance.player;
+        room = GameManager.instance.room;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -19,6 +33,7 @@ public class PlayerCollisions : MonoBehaviour
             case "Enemy":
                 EnemyStats enemy = collision.gameObject.GetComponent<EnemyStats>();
                 player.stats.TakeDamage(enemy.damage);
+                player.visualControl.ShowColorFeedback(Color.red, 15, .1f);
                 break;
         }
     }
@@ -28,18 +43,18 @@ public class PlayerCollisions : MonoBehaviour
         switch (collision.gameObject.tag)
         {
             case "Shield":
-                player.stats.RegenShield();
-                break;
-            case "Exit":
-                int enemiesLeft = 0;
-                foreach (Transform enemy in room.enemyContainer)
+                ShieldRegenerator shield = collision.GetComponent<ShieldRegenerator>();
+                if (!shield.ShouldIncreaseOpacity)
                 {
-                    if (enemy.gameObject.activeInHierarchy)
-                        enemiesLeft++;
+                    shield.ShieldCooldownBehavior();
+                    player.visualControl.ShowColorFeedback(Color.blue, 10, .25f);
+                    player.stats.RegenShield();
                 }
-                Debug.Log(enemiesLeft);
-                if (enemiesLeft <= 0)
-                    Game_Manager.instance.HandleWin();
+                break;
+
+            case "Exit":
+                if (IsRoomEmpty())
+                    GameManager.instance.HandleWin();
                 break;
         }
     }

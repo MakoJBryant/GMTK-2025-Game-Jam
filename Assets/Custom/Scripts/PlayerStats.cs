@@ -2,16 +2,16 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-
-    public int
+    private int
         maxHealth = 250, 
         currentHealth, 
-        shield,
-        maxShield = 100;
+        maxShield = 100,
+        shield;
 
-    public float power = 5f;
+    [SerializeField] private float power = 5f;
+    public float Power => power;
 
-    void Start()
+    private void Start()
     {
         currentHealth = maxHealth;
         shield = maxShield; // Initialize shield to maximum value   
@@ -19,7 +19,7 @@ public class PlayerStats : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
-        Debug.Log(amount);
+        Debug.Log("Player took " + amount + "damage");
         if(shield > 0)
         {
             shield -= amount;
