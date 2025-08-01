@@ -1,4 +1,5 @@
 /*
+PURPOSE:
 Used to manage your scene transitions (like starting the game, restarting, quitting, etc.).
 Made as a singleton scene loader so that it persists across scenes.
 */

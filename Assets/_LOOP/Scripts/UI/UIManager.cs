@@ -1,4 +1,5 @@
 /*
+PURPOSE:
 Activates/deactivates UI panels
 Can be accessed globally (singleton pattern)
 Provides simple methods for switching screens
