@@ -50,6 +50,9 @@ public class EnemyScript : MonoBehaviour
 
     private IEnumerator Lunge()
     {
+        Debug.Log("Lunge started");
+        agent.isStopped = true;
+        agent.ResetPath();
         isLunging = true;
 
         yield return new WaitForSeconds(windUp);
@@ -64,12 +67,15 @@ public class EnemyScript : MonoBehaviour
         }
 
         isLunging = false;
+        agent.SetDestination(target.position);
+        agent.isStopped = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player") && !isLunging)
         {
+            Debug.Log("Enemy lunging at player!");
             StartCoroutine(Lunge());
         }
     }
