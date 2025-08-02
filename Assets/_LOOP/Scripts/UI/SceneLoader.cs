@@ -20,7 +20,7 @@ public class SceneLoader : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject); // Persist across scenes
+        //DontDestroyOnLoad(gameObject); // Persist across scenes
     }
 
     public void LoadScene(string sceneName)

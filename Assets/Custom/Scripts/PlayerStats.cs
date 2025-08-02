@@ -10,6 +10,7 @@ public class PlayerStats : MonoBehaviour
 
     [SerializeField] private float power = 5f;
     public float Power => power;
+    public bool iFrame = false; // Invincibility frame flag
 
     private void Start()
     {
@@ -20,7 +21,12 @@ public class PlayerStats : MonoBehaviour
     public void TakeDamage(int amount)
     {
         Debug.Log("Player took " + amount + "damage");
-        if(shield > 0)
+        if (iFrame)
+        {
+            Debug.Log("Player is invincible, no damage taken.");
+            return; // If player is invincible, ignore damage
+        }
+        if (shield > 0)
         {
             shield -= amount;
             if(shield < 0)

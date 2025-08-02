@@ -11803,6 +11803,11 @@ PrefabInstance:
       objectReference: {fileID: 6311485525979880633}
     - target: {fileID: 3790559510410953780, guid: 64aee19ada11aa94aaadaa7c6b47d7b9,
         type: 3}
+      propertyPath: timeBetweenSpawn
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3790559510410953780, guid: 64aee19ada11aa94aaadaa7c6b47d7b9,
+        type: 3}
       propertyPath: entrances.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -13270,6 +13275,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5047775813884351402, guid: dabae414a1ee83a428ec488493d03626,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
