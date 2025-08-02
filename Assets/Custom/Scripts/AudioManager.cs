@@ -3,6 +3,7 @@ using System;
 using UnityEngine;
 using System.Runtime.CompilerServices;
 using System.Xml.Serialization;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -21,8 +22,9 @@ public class AudioManager : MonoBehaviour
             return; // Exit if an instance already exists
         }
 
-        //DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject);
         CreateSoundsArray();
+
     }
 
     private void CreateInstance()
