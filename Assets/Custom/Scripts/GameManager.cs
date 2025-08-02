@@ -1,4 +1,5 @@
 using System.Runtime.InteropServices.WindowsRuntime;
+using UnityEditor.Overlays;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,34 +14,35 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
+        if (instance != null && instance != this)
         {
-            instance = this;
+            Destroy(gameObject); // Destroy duplicate
         }
         else
         {
-            Destroy(gameObject);
-            return;
+            instance = this;
         }
 
-        //DontDestroyOnLoad(gameObject);
-        data = data ?? new GameData();
+        if (data == null)
+        {
+            data = new GameData();
+        }
     }
 
-    private void CreateInstance()
+    private void Start()
     {
-        
+        data.LoadData();
     }
 
     public void HandleWin()
     {
         bool enterSacrifice = false;
         player.movement.LockControls(true);
-        data.round++;
-        if (data.round >= data.roundLimit)
+        data.IncrementRound();
+        if (data.GetRound() >= data.roundLimit)
         {
             enterSacrifice = true;
-            data.round = 0;
+            data.ResetRounds();
             data.IncreaseDifficulty();
         }
         StartCoroutine(player.visualControl.ExitScene(enterSacrifice));

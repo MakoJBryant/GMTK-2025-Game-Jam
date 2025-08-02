@@ -1097,6 +1097,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4293837126904887321, guid: 050512556a629c945815dbccd7fb1863,
         type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4293837126904887321, guid: 050512556a629c945815dbccd7fb1863,
+        type: 3}
       propertyPath: room
       value: 
       objectReference: {fileID: 618276809}
@@ -1107,9 +1112,19 @@ PrefabInstance:
       objectReference: {fileID: 782077612}
     - target: {fileID: 4293837126904887321, guid: 050512556a629c945815dbccd7fb1863,
         type: 3}
+      propertyPath: data.round
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4293837126904887321, guid: 050512556a629c945815dbccd7fb1863,
+        type: 3}
       propertyPath: audioManager
       value: 
       objectReference: {fileID: 709317927}
+    - target: {fileID: 4293837126904887321, guid: 050512556a629c945815dbccd7fb1863,
+        type: 3}
+      propertyPath: data.roundLimit
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

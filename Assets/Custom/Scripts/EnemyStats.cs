@@ -3,6 +3,7 @@ using UnityEngine;
 public class EnemyStats : MonoBehaviour
 {
     public PlayerStats playerStats;
+    private GameData data;
 
     public float defense = 5f;
     public int damage = 25;
@@ -11,6 +12,10 @@ public class EnemyStats : MonoBehaviour
     private void Start()
     {
         playerStats = GameManager.instance.player.GetComponent<PlayerStats>();
+        data = GameManager.instance.data;
+        defense *= data.difficulty;
+        damage = Mathf.RoundToInt(damage * data.difficulty);
+        maxHealth = Mathf.RoundToInt(maxHealth * data.difficulty);
         health = maxHealth;
     }
 
