@@ -18,6 +18,7 @@ public class PlayerVisualControl : MonoBehaviour
 
     public IEnumerator ExitScene(bool enterSacrificeStage)
     {
+        GameManager.instance.player.movement.LockControls(true);
         GameManager.instance.player.hand.gameObject.SetActive(false);
         spriteRenderer.sprite = playerExitSprite;
         yield return new WaitForSeconds(1);
@@ -32,10 +33,12 @@ public class PlayerVisualControl : MonoBehaviour
         {
             GameManager.instance.LoadRandomFightScene();
         }
+
     }
 
-    public IEnumerator SacrificeSelf()
+    public IEnumerator PlayerDeath(bool isSacrifice)
     {
+        GameManager.instance.player.movement.LockControls(true);
         GameManager.instance.player.hand.gameObject.SetActive(false);
         spriteRenderer.sprite = playerExitSprite;
         yield return new WaitForSeconds(1);
@@ -47,7 +50,15 @@ public class PlayerVisualControl : MonoBehaviour
         isExiting = true;
         yield return new WaitForSeconds(2);
         isExiting = false;
-        GameManager.instance.LoadStartScene();
+        if (isSacrifice)
+        {
+            GameManager.instance.LoadStartScene();
+        }
+        else
+        {
+            GameManager.instance.LoadGameOverScene();
+        }
+
     }
 
     public void ShowColorFeedback(Color color, float speed, float time)

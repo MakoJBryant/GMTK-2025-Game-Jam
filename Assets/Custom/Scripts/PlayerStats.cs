@@ -38,6 +38,7 @@ public class PlayerStats : MonoBehaviour
             currentHealth = 0; // Ensure health does not go below 0
             Debug.Log("Player is dead!");
             // Handle player death (e.g., trigger game over, respawn, etc.)
+            GameManager.instance.HandleDeath();
         }
     }
 

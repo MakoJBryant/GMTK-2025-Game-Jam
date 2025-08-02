@@ -50,14 +50,18 @@ public class GameManager : MonoBehaviour
 
     public void HandleDeath()
     {
-        data.IncreaseDifficulty();
-        LoadRandomFightScene();
+        StartCoroutine(player.visualControl.PlayerDeath(false));
     }
 
-    public void HandleReset()
+    public void HandleSacrifice()
     {
         data.IncreaseDifficulty();
-        StartCoroutine(player.visualControl.SacrificeSelf());
+        StartCoroutine(player.visualControl.PlayerDeath(true));
+    }
+
+    public void LoadGameOverScene()
+    {
+        SceneManager.LoadScene("TitleScene");
     }
 
     public void LoadRandomFightScene()
