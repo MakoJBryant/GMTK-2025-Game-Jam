@@ -51,16 +51,16 @@ public class EnemyScript : MonoBehaviour
     private IEnumerator Lunge()
     {
         Debug.Log("Lunge started");
-        agent.isStopped = true;
+        agent.isStopped = true; // Stop the agent to prevent it from moving during the lunge
         agent.ResetPath();
         isLunging = true;
 
         yield return new WaitForSeconds(windUp);
         float timer = 0f;
 
+        Vector3 direction = (player.transform.position - transform.position).normalized;
         while (timer < lungeDuration)
         {
-            Vector3 direction = (player.transform.position - transform.position).normalized;
             transform.position += direction * lungeSpeed * Time.fixedDeltaTime;
             timer += Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();
@@ -68,7 +68,7 @@ public class EnemyScript : MonoBehaviour
 
         isLunging = false;
         agent.SetDestination(target.position);
-        agent.isStopped = false;
+        agent.isStopped = false; // Resume the agent's movement
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

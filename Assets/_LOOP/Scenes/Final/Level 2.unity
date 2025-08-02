@@ -11794,7 +11794,7 @@ PrefabInstance:
     - target: {fileID: 3790559510410953780, guid: 64aee19ada11aa94aaadaa7c6b47d7b9,
         type: 3}
       propertyPath: enemiesToSpawn
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3790559510410953780, guid: 64aee19ada11aa94aaadaa7c6b47d7b9,
         type: 3}

@@ -262,9 +262,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2.5
-  lungeSpeed: 5
+  lungeSpeed: 15
   windUp: 1
-  lungeDuration: 0.5
+  lungeDuration: 0.25
 --- !u!114 &7398806272728347585
 MonoBehaviour:
   m_ObjectHideFlags: 0
