@@ -21,7 +21,7 @@ public class AudioManager : MonoBehaviour
             return; // Exit if an instance already exists
         }
 
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
         CreateSoundsArray();
     }
 
