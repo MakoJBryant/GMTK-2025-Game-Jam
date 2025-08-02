@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 [System.Serializable]
 public class GameData
 {
@@ -24,6 +25,11 @@ public class GameData
     {
         round = 0;
         SaveData();
+    }
+
+    public void LoadGameOverScene()
+    {
+        SceneManager.LoadScene("GameOverScene");
     }
 
     public int GetRound()
