@@ -6,6 +6,7 @@ using UnityEngine;
 public class RoomManager : MonoBehaviour
 {
     [SerializeField] private GameObject enemy;
+    [SerializeField] private Transform playerEntrance;
     [SerializeField] private List<Transform> entrances = new();
     [SerializeField] private int enemiesToSpawn = 10;
     [SerializeField] private float timeBetweenSpawn;
@@ -17,6 +18,7 @@ public class RoomManager : MonoBehaviour
     {
         InitEnemyPool();
         StartCoroutine(SpawnRoutine());
+        GameManager.instance.player.transform.position = playerEntrance.position;
     }
 
     private void InitEnemyPool()

@@ -13,10 +13,16 @@ public class PlayerCollisions : MonoBehaviour
             if (enemy.gameObject.activeInHierarchy)
                 enemiesLeft++;
         }
-        Debug.Log("Cannot pass, " + enemiesLeft + " enemies left.");
+
         if (enemiesLeft <= 0)
+        {
             return true;
-        else return false;
+        }
+        else
+        {
+            Debug.Log("Cannot pass, " + enemiesLeft + " enemies left.");
+            return false;
+        }
     }
 
     private void Start()

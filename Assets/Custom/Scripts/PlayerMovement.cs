@@ -14,14 +14,22 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isDodging = false;
     private bool canDodge = true;
+    private bool lockControls = false;
 
     private Vector3 movementDirection;
     private Vector3 dodgeDirection;
 
+    public void LockControls(bool b) => lockControls = b;
+
+    private void Start()
+    {
+        LockControls(false);
+    }
 
     private void Update()
     {
-        Movement();
+        if (!lockControls)
+            Movement();
     }
 
     private void Movement()

@@ -34,15 +34,36 @@ public class GameManager : MonoBehaviour
 
     public void HandleWin()
     {
+        bool enterSacrifice = false;
+        player.movement.LockControls(true);
         data.round++;
-        LoadRandomScene();
+        if (data.round >= data.roundLimit)
+        {
+            enterSacrifice = true;
+            data.round = 0;
+            data.IncreaseDifficulty();
+        }
+        StartCoroutine(player.visualControl.ExitScene(enterSacrifice));
     }
 
     public void HandleDeath()
     {
         data.IncreaseDifficulty();
-        LoadRandomScene();
+        LoadRandomFightScene();
     }
 
-    public void LoadRandomScene() => SceneManager.LoadScene(Random.Range(0, SceneManager.sceneCountInBuildSettings));
+    public void LoadRandomFightScene()
+    {
+        SceneManager.LoadScene("Level " + Random.Range(1, data.fightSceneCount));
+    }
+
+    public void LoadStartScene()
+    {
+        SceneManager.LoadScene("StartScene");
+    }
+
+    public void LoadSacrificeScene()
+    {
+        SceneManager.LoadScene("SacrificeScene");
+    }
 }

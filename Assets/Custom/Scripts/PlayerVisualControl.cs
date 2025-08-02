@@ -1,15 +1,37 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
 
 public class PlayerVisualControl : MonoBehaviour
 {
+    [SerializeField] private Sprite playerExitSprite;
+    [SerializeField] private Sprite defaultSprite;
     [SerializeField] private float feedbackSpeed = 15f;
     [SerializeField] private float feedbackTime = .1f;
+    [SerializeField] private float shrinkSpeed = 15f;
     [SerializeField] private Color desiredColor;
 
     private SpriteRenderer spriteRenderer;
     private float timeGoal = Mathf.Infinity;
+    private bool isExiting = false;
     private Color defaultColor = Color.white;
+
+    public IEnumerator ExitScene(bool enterSacrificeStage)
+    {
+        spriteRenderer.sprite = playerExitSprite;
+        yield return new WaitForSeconds(1);
+        isExiting = true;
+        yield return new WaitForSeconds(2);
+        isExiting = false;
+        if (enterSacrificeStage)
+        {
+            GameManager.instance.LoadSacrificeScene();
+        }
+        else
+        {
+            GameManager.instance.LoadRandomFightScene();
+        }
+    }
 
     public void ShowColorFeedback(Color color, float speed, float time)
     {
@@ -22,10 +44,23 @@ public class PlayerVisualControl : MonoBehaviour
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        desiredColor = defaultColor;
+        AssignValues();
     }
 
     private void Update()
+    {
+        ColorControl();
+        ShrinkControl();
+    }
+
+    private void AssignValues()
+    {
+        spriteRenderer.sprite = defaultSprite;
+        desiredColor = defaultColor;
+        transform.localScale = Vector3.one;
+    }
+
+    private void ColorControl()
     {
         if (Time.time > timeGoal)
         {
@@ -37,4 +72,13 @@ public class PlayerVisualControl : MonoBehaviour
         spriteRenderer.color = currentColor;
     }
 
+    private void ShrinkControl()
+    {
+        if (isExiting)
+        {
+            Vector2 currentScale = transform.localScale;
+            currentScale = Vector2.Lerp(currentScale, Vector2.zero, shrinkSpeed * Time.deltaTime);
+            transform.localScale = currentScale;
+        }
+    }
 }
