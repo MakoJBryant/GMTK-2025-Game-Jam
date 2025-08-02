@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public PlayerMovement movement;
     public PlayerStats stats;
     public PlayerVisualControl visualControl;
+    public PlayerHand hand;
 
     private void Start()
     {
@@ -16,5 +17,6 @@ public class Player : MonoBehaviour
         movement = GetComponent<PlayerMovement>();
         stats = GetComponent<PlayerStats>();
         visualControl = GetComponentInChildren<PlayerVisualControl>();
+        hand = GetComponentInChildren<PlayerHand>();
     }
 }

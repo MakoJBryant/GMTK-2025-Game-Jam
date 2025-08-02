@@ -62,6 +62,10 @@ public class PlayerCollisions : MonoBehaviour
                 if (IsRoomEmpty())
                     GameManager.instance.HandleWin();
                 break;
+
+            case "SacrificeAltar":
+                GameManager.instance.HandleReset();
+                break;
         }
     }
 }

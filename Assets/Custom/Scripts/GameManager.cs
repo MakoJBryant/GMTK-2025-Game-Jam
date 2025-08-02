@@ -52,6 +52,12 @@ public class GameManager : MonoBehaviour
         LoadRandomFightScene();
     }
 
+    public void HandleReset()
+    {
+        data.IncreaseDifficulty();
+        StartCoroutine(player.visualControl.SacrificeSelf());
+    }
+
     public void LoadRandomFightScene()
     {
         SceneManager.LoadScene("Level " + Random.Range(1, data.fightSceneCount));

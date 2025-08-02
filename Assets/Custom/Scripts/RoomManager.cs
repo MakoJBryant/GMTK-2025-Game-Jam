@@ -10,9 +10,11 @@ public class RoomManager : MonoBehaviour
     [SerializeField] private List<Transform> entrances = new();
     [SerializeField] private int enemiesToSpawn = 10;
     [SerializeField] private float timeBetweenSpawn;
+    [SerializeField] private bool spawnEnemiesInRoom = true;
 
     [SerializeField] private Transform enemyContainer;
     public Transform EnemyContainer => enemyContainer;
+
 
     private void Start()
     {
@@ -34,15 +36,18 @@ public class RoomManager : MonoBehaviour
 
     private IEnumerator SpawnRoutine()
     {
-        foreach (Transform newEnemy in enemyContainer)
+        if (spawnEnemiesInRoom)
         {
-            yield return new WaitForSeconds(timeBetweenSpawn);
+            foreach (Transform newEnemy in enemyContainer)
+            {
+                yield return new WaitForSeconds(timeBetweenSpawn);
 
-            newEnemy.gameObject.SetActive(true);
+                newEnemy.gameObject.SetActive(true);
 
-            int entranceIndex = Random.Range(0, entrances.Count);
-            Vector2 spawnPos = entrances[entranceIndex].position;
-            newEnemy.position = spawnPos;
+                int entranceIndex = Random.Range(0, entrances.Count);
+                Vector2 spawnPos = entrances[entranceIndex].position;
+                newEnemy.position = spawnPos;
+            }
         }
     }
 }
