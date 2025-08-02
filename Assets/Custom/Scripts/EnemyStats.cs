@@ -8,9 +8,10 @@ public class EnemyStats : MonoBehaviour
     public float defense = 5f;
     public int damage = 25;
     public int health, maxHealth = 100;
-
+    Animator animator;
     private void Start()
     {
+        animator = GetComponentInChildren<Animator>();
         playerStats = GameManager.instance.player.GetComponent<PlayerStats>();
         data = GameManager.instance.data;
         defense *= data.difficulty;
@@ -28,8 +29,13 @@ public class EnemyStats : MonoBehaviour
             Debug.Log("Enemy is dead!");
 
             // GameManager.instance.audioManager.Play("Test Death"); // Play death sound
-
-            gameObject.SetActive(false);
+            animator.SetTrigger("Die");
+            Invoke("DisableEnemy", .10f);
         }
+    }
+
+    private void DisableEnemy()
+    {
+        gameObject.SetActive(false);
     }
 }
