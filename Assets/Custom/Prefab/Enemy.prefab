@@ -231,7 +231,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6305533716228494325
 Transform:
   m_ObjectHideFlags: 0
@@ -281,7 +281,7 @@ MonoBehaviour:
   defense: 5
   damage: 25
   health: 0
-  maxHealth: 100
+  maxHealth: 15
 --- !u!61 &5940669314081113419
 BoxCollider2D:
   m_ObjectHideFlags: 0
