@@ -55,6 +55,7 @@ MonoBehaviour:
   movement: {fileID: 0}
   stats: {fileID: 0}
   visualControl: {fileID: 0}
+  hand: {fileID: 0}
 --- !u!114 &5558091807798848664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,8 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  sprintSpeed: 10
-  dodgeSpeed: 7.5
+  dodgeSpeed: 10
   dodgeDuration: 0.5
   dodgeCooldown: 1
 --- !u!114 &2386936943429061904

@@ -4,8 +4,7 @@ public class PlayerMovement : MonoBehaviour
 {
 
     public float moveSpeed = 5f;
-    public float sprintSpeed = 10f;
-    public float dodgeSpeed = 7.5f;
+    public float dodgeSpeed = 10f;
 
     public float dodgeDuration = 0.5f;
     public float dodgeCooldown = 1f;
@@ -71,8 +70,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : moveSpeed;
-            transform.position += currentSpeed * Time.deltaTime * movementDirection;
+            transform.position += moveSpeed * Time.deltaTime * movementDirection;
         }
     }
 }
