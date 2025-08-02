@@ -13,12 +13,6 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        CreateInstance();
-        data = data ?? new GameData();
-    }
-
-    private void CreateInstance()
-    {
         if (instance == null)
         {
             instance = this;
@@ -30,6 +24,12 @@ public class GameManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
+        data = data ?? new GameData();
+    }
+
+    private void CreateInstance()
+    {
+        
     }
 
     public void HandleWin()

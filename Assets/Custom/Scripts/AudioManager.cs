@@ -11,12 +11,6 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        CreateInstance();
-        CreateSoundsArray();
-    }
-
-    private void CreateInstance()
-    {
         if (instance == null)
         {
             instance = this;
@@ -28,6 +22,12 @@ public class AudioManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
+        CreateSoundsArray();
+    }
+
+    private void CreateInstance()
+    {
+        
     }
 
     private void CreateSoundsArray()
