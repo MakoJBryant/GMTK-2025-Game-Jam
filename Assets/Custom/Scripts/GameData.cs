@@ -10,7 +10,7 @@ public class GameData
 
     public void IncreaseDifficulty()
     {
-        difficulty *= (difficulty + difficultyRamp);
+        difficulty *= (GetDifficulty() + difficultyRamp);
         SaveData();
     }
 

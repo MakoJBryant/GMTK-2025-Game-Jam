@@ -25,6 +25,7 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
+        GameManager.instance.data.ClearData();
         SceneManager.LoadScene(sceneName);
     }
 
