@@ -7157,6 +7157,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3790559510410953780, guid: 64aee19ada11aa94aaadaa7c6b47d7b9,
         type: 3}
+      propertyPath: enemiesToSpawn
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3790559510410953780, guid: 64aee19ada11aa94aaadaa7c6b47d7b9,
+        type: 3}
       propertyPath: playerEntrance
       value: 
       objectReference: {fileID: 6311485525979880633}
