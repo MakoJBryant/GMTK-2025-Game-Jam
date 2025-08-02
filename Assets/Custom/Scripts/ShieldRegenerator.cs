@@ -42,4 +42,19 @@ public class ShieldRegenerator : MonoBehaviour
         spriteRenderer.color = color;
         shouldIncreaseOpacity = true;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            Player player = collision.gameObject.GetComponent<Player>();
+            if (ShouldIncreaseOpacity)
+            {
+                ShieldCooldownBehavior();
+                player.visualControl.ShowColorFeedback(Color.blue, 10, .25f);
+                player.stats.RegenShield();
+            }
+        }
+
+    }
 }

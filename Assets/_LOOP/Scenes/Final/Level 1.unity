@@ -778,6 +778,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5644647599303941207, guid: 77649cb73975d2e4c8885de8324d35f5,
+        type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 7710103294869701868, guid: 77649cb73975d2e4c8885de8324d35f5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9097,6 +9102,46 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6758831847313666172, guid: dabae414a1ee83a428ec488493d03626,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6758831847313666172, guid: dabae414a1ee83a428ec488493d03626,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6758831847313666172, guid: dabae414a1ee83a428ec488493d03626,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 8128169551677588892, guid: dabae414a1ee83a428ec488493d03626,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8128169551677588892, guid: dabae414a1ee83a428ec488493d03626,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 8269245720326170980, guid: dabae414a1ee83a428ec488493d03626,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8269245720326170980, guid: dabae414a1ee83a428ec488493d03626,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 8753068214358819032, guid: dabae414a1ee83a428ec488493d03626,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
