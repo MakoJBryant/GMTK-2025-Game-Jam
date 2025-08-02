@@ -30,10 +30,6 @@ public class UIManager : MonoBehaviour
 
     [Header("UI Panels")]
     public GameObject titleScreen;
-    public GameObject hud;
-    public GameObject deathScreen;
-    public GameObject loopSummaryScreen;
-    public GameObject pauseMenu;
 
     void Awake()
     {
@@ -58,30 +54,6 @@ public class UIManager : MonoBehaviour
         titleScreen?.SetActive(true);
     }
 
-    public void ShowHUD()
-    {
-        SetAllInactive();
-        hud?.SetActive(true);
-    }
-
-    public void ShowDeathScreen()
-    {
-        SetAllInactive();
-        deathScreen?.SetActive(true);
-    }
-
-    public void ShowLoopSummary()
-    {
-        SetAllInactive();
-        loopSummaryScreen?.SetActive(true);
-    }
-
-    public void TogglePause()
-    {
-        if (pauseMenu != null)
-            pauseMenu.SetActive(!pauseMenu.activeSelf);
-    }
-
     public void QuitGame()
     {
         Debug.Log("Quit Game called");
@@ -96,9 +68,5 @@ public class UIManager : MonoBehaviour
     private void SetAllInactive()
     {
         titleScreen?.SetActive(false);
-        hud?.SetActive(false);
-        deathScreen?.SetActive(false);
-        loopSummaryScreen?.SetActive(false);
-        pauseMenu?.SetActive(false);
     }
 }
