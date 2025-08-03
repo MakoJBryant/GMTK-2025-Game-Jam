@@ -1,24 +1,60 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Reflection;
+using UnityEngine.SceneManagement;
+using TMPro; // You need to add this line for TextMeshPro
 
 public class UIController : MonoBehaviour
 {
-    public Image healthBar;
-    public Image shieldBar;
+    public static UIController Instance;
+
+    [Header("UI Elements")]
+    public TMP_Text healthText; // Changed from Text to TMP_Text
+    public TMP_Text shieldText; // Changed from Text to TMP_Text
+    public TMP_Text enemyCountText; // Changed from Text to TMP_Text
 
     private PlayerStats stats;
-
     private FieldInfo currentHealthField;
     private FieldInfo maxHealthField;
     private FieldInfo shieldField;
     private FieldInfo maxShieldField;
 
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject); // Prevent duplicates
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject); // Persist through scene loads
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
     private void Start()
+    {
+        TryFindPlayerStats();
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        TryFindPlayerStats();
+    }
+
+    private void TryFindPlayerStats()
     {
         stats = FindFirstObjectByType<PlayerStats>();
 
-        // Cache the field info using reflection
+        if (stats == null) return;
+
         currentHealthField = typeof(PlayerStats).GetField("currentHealth", BindingFlags.NonPublic | BindingFlags.Instance);
         maxHealthField = typeof(PlayerStats).GetField("maxHealth", BindingFlags.NonPublic | BindingFlags.Instance);
         shieldField = typeof(PlayerStats).GetField("shield", BindingFlags.NonPublic | BindingFlags.Instance);
@@ -29,16 +65,19 @@ public class UIController : MonoBehaviour
     {
         if (stats == null) return;
 
-        // Read private values via reflection
         int currentHealth = (int)currentHealthField.GetValue(stats);
         int maxHealth = (int)maxHealthField.GetValue(stats);
         int shield = (int)shieldField.GetValue(stats);
         int maxShield = (int)maxShieldField.GetValue(stats);
 
-        float healthPercent = (float)currentHealth / maxHealth;
-        float shieldPercent = (float)shield / maxShield;
+        // Update the health and shield UI to display numbers
+        healthText.text = $"{currentHealth} / {maxHealth}";
+        shieldText.text = $"{shield} / {maxShield}";
 
-        healthBar.fillAmount = healthPercent;
-        shieldBar.fillAmount = shieldPercent;
+        // Update enemy count if manager exists
+        if (EnemyTrackerManager.Instance != null)
+        {
+            enemyCountText.text = EnemyTrackerManager.Instance.CurrentEnemyCount.ToString();
+        }
     }
 }
