@@ -4,7 +4,7 @@ public class DamageWeapon : MonoBehaviour
 {
     private PlayerStats playerStats;
     [SerializeField] private int damage = 10;
-
+    [SerializeField] private int hits;
     private void Start()
     {
         playerStats = GameManager.instance.player.stats;

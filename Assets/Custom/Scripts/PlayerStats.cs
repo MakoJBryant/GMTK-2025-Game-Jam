@@ -3,10 +3,11 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     private int
-        maxHealth = 250, 
-        currentHealth, 
+        maxHealth = 250,
         maxShield = 100,
         shield;
+
+    [SerializeField] private int currentHealth;
 
     [SerializeField] private float power = 5f;
     public float Power => power;
@@ -14,11 +15,31 @@ public class PlayerStats : MonoBehaviour
 
     Animator animator;
 
+    [SerializeField] SpriteRenderer playerHeadRenderer;
+    [SerializeField] SpriteRenderer playerbodyRenderer;
+
+    [SerializeField] Sprite playerHead1;
+    [SerializeField] Sprite playerBody1;
+
+
+    [SerializeField] Sprite playerHead2;
+    [SerializeField] Sprite playerBody2;
+
+
+    [SerializeField] Sprite playerHead3;
+    [SerializeField] Sprite playerBody3;
+
+
     private void Start()
     {
         animator = GetComponentInChildren<Animator>();
         currentHealth = maxHealth;
         shield = maxShield; // Initialize shield to maximum value   
+    }
+
+    private void Update()
+    {
+        ChangeSprites();
     }
 
     public void TakeDamage(int amount)
@@ -40,17 +61,33 @@ public class PlayerStats : MonoBehaviour
         }
         else
         {
-
-            currentHealth -= amount;
-            
+            currentHealth -= amount;  
         }
-
-        if(currentHealth <= 0)
+        if (currentHealth <= 0)
         {
             currentHealth = 0; // Ensure health does not go below 0
             Debug.Log("Player is dead!");
             // Handle player death (e.g., trigger game over, respawn, etc.)
             GameManager.instance.HandleDeath();
+        }
+    }
+
+    public void ChangeSprites()
+    {
+        if (currentHealth < 100)
+        {
+            playerHeadRenderer.sprite = playerHead3;
+            playerbodyRenderer.sprite = playerBody3;
+        }
+        else if (currentHealth < 200)
+        {
+            playerHeadRenderer.sprite = playerHead2;
+            playerbodyRenderer.sprite = playerBody2;
+        }
+        else // Above 50% health (healthy state)
+        {
+            playerHeadRenderer.sprite = playerHead1;
+            playerbodyRenderer.sprite = playerBody1;
         }
     }
 

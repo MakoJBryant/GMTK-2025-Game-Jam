@@ -5174,6 +5174,8 @@ MonoBehaviour:
   damage: 25
   health: 0
   maxHealth: 15
+  deathParticle: {fileID: 5380395100628882432, guid: 2f36fc5e67902d444b9125f9499dd38d,
+    type: 3}
 --- !u!61 &5940669314081113419
 BoxCollider2D:
   m_ObjectHideFlags: 0

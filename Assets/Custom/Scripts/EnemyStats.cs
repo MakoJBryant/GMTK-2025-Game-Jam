@@ -2,12 +2,17 @@ using UnityEngine;
 
 public class EnemyStats : MonoBehaviour
 {
+
     public PlayerStats playerStats;
     private GameData data;
 
     public float defense = 5f;
     public int damage = 25;
     public int health, maxHealth = 100;
+
+    [SerializeField] private ParticleSystem deathParticle;
+    
+
     Animator animator;
     private void Start()
     {
@@ -30,6 +35,7 @@ public class EnemyStats : MonoBehaviour
 
             // GameManager.instance.audioManager.Play("Test Death"); // Play death sound
             animator.SetTrigger("Die");
+            Instantiate(deathParticle, transform.position, transform.rotation);
             Invoke("DisableEnemy", .10f);
         }
     }
