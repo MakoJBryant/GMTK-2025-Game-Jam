@@ -18,10 +18,13 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 movementDirection;
     private Vector3 dodgeDirection;
 
+    Animator animator;
+
     public void LockControls(bool b) => lockControls = b;
 
     private void Start()
     {
+        animator = GetComponentInChildren<Animator>();
         LockControls(false);
     }
 
@@ -39,6 +42,15 @@ public class PlayerMovement : MonoBehaviour
             movementDirection.x = Input.GetAxisRaw("Horizontal");
             movementDirection.y = Input.GetAxisRaw("Vertical");
             movementDirection.Normalize(); // Normalize to prevent faster diagonal movement
+
+            if(movementDirection != Vector3.zero)
+            {
+                animator.SetBool("isMoving", true);
+            }
+            else
+            {
+                animator.SetBool("isMoving", false);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && canDodge && movementDirection != Vector3.zero)

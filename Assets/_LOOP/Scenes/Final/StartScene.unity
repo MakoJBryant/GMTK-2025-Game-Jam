@@ -8509,6 +8509,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1026774308874741238, guid: dabae414a1ee83a428ec488493d03626,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2410227590631777247, guid: dabae414a1ee83a428ec488493d03626,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -9215679872552952564, guid: cd9876c6262ebb145b167319e68ad1f4,
+        type: 3}
+    - target: {fileID: 3189574696086223536, guid: dabae414a1ee83a428ec488493d03626,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4461792086612015024, guid: dabae414a1ee83a428ec488493d03626,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7411174390521880758, guid: dabae414a1ee83a428ec488493d03626,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8773510807213207210, guid: dabae414a1ee83a428ec488493d03626,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.74375004
+      objectReference: {fileID: 0}
+    - target: {fileID: 8773510807213207210, guid: dabae414a1ee83a428ec488493d03626,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

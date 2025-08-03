@@ -11,14 +11,18 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float power = 5f;
     public float Power => power;
 
+    Animator animator;
+
     private void Start()
     {
+        animator = GetComponentInChildren<Animator>();
         currentHealth = maxHealth;
         shield = maxShield; // Initialize shield to maximum value   
     }
 
     public void TakeDamage(int amount)
     {
+        animator.SetTrigger("Damaged");
         Debug.Log("Player took " + amount + "damage");
         if(shield > 0)
         {
@@ -30,7 +34,9 @@ public class PlayerStats : MonoBehaviour
         }
         else
         {
+
             currentHealth -= amount;
+            
         }
 
         if(currentHealth <= 0)
