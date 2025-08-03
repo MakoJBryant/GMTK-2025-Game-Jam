@@ -73,11 +73,5 @@ public class UIController : MonoBehaviour
         // Update the health and shield UI to display numbers
         healthText.text = $"{currentHealth} / {maxHealth}";
         shieldText.text = $"{shield} / {maxShield}";
-
-        // Update enemy count if manager exists
-        if (EnemyTrackerManager.Instance != null)
-        {
-            enemyCountText.text = EnemyTrackerManager.Instance.CurrentEnemyCount.ToString();
-        }
     }
 }
