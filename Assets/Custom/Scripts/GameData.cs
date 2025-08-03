@@ -4,14 +4,15 @@ using UnityEngine.SceneManagement;
 public class GameData
 {
     public float difficulty = 1;
-    public float difficultyRamp = .1f;
+    public float difficultyRamp = .25f;
     public int round = 0;
-    public int roundLimit = 3;
+    public int roundLimit = 5;
     public readonly int fightSceneCount = 3;
 
     public void IncreaseDifficulty()
     {
-        difficulty *= (GetDifficulty() + difficultyRamp);
+        //difficulty *= (GetDifficulty() + difficultyRamp);
+        difficulty = difficultyRamp * GetDifficulty() + difficulty;
         SaveData();
     }
 

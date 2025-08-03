@@ -21,6 +21,7 @@ public class RoomManager : MonoBehaviour
         InitEnemyPool();
         StartCoroutine(SpawnRoutine());
         GameManager.instance.player.transform.position = playerEntrance.position;
+        timeBetweenSpawn /= GameManager.instance.data.GetDifficulty();
     }
 
     private void InitEnemyPool()
