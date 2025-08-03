@@ -57,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
         {
             isDodging = true;
             canDodge = false;
+            GameManager.instance.player.stats.iFrame = true; // Set invincibility frame during dodge
             dodgeDirection = movementDirection; // Store the direction of the dodge
             dodgeTimer = dodgeDuration; // Set the end time for the dodge
         }
@@ -82,6 +83,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
+            GameManager.instance.player.stats.iFrame = false; // Set invincibility frame during dodge
             transform.position += moveSpeed * Time.deltaTime * movementDirection;
         }
     }

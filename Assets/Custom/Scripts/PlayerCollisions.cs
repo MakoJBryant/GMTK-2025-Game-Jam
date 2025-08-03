@@ -64,7 +64,7 @@ public class PlayerCollisions : MonoBehaviour
                 break;
 
             case "SacrificeAltar":
-                GameManager.instance.HandleReset();
+                GameManager.instance.HandleSacrifice();
                 break;
         }
     }

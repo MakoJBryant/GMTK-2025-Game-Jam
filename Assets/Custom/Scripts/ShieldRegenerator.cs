@@ -1,4 +1,4 @@
-using UnityEditor.Experimental.GraphView;
+//using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class ShieldRegenerator : MonoBehaviour
@@ -41,5 +41,20 @@ public class ShieldRegenerator : MonoBehaviour
         color.a = 0;
         spriteRenderer.color = color;
         shouldIncreaseOpacity = true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            Player player = collision.gameObject.GetComponent<Player>();
+            if (ShouldIncreaseOpacity)
+            {
+                ShieldCooldownBehavior();
+                player.visualControl.ShowColorFeedback(Color.blue, 10, .25f);
+                player.stats.RegenShield();
+            }
+        }
+
     }
 }

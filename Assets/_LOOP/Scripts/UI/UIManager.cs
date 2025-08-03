@@ -40,7 +40,7 @@ public class UIManager : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
     }
 
     void Start()

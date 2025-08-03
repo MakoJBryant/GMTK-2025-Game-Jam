@@ -7,8 +7,11 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private GameObject wind;
     [SerializeField] private GameObject thunder;
     [SerializeField] private float attackDuration = 0.3f; // Duration of the attack animation
+    //[SerializeField] private float blastDuration = .3f;
+    //[SerializeField] private float blastTimer = 0;
     [SerializeField] private float attackTimer = 0f; // Timer to track the attack duration
-    private bool isAttacking = false;
+    //SerializeField] private bool isBlasting = false; // lmao
+    [SerializeField] private bool isAttacking = false;
 
     //ranged
     [SerializeField] private Transform aim;
@@ -39,19 +42,31 @@ public class PlayerAttack : MonoBehaviour
                 thunder.SetActive(false); // Deactivate Thunder after the attack
             }
         }
+
+/*        if (isBlasting)
+        {
+            blastTimer += Time.deltaTime;
+            if (blastTimer >= blastDuration)
+            {
+                isBlasting = false;
+                blastTimer = 0f;
+                wind.SetActive(false);
+                thunder.SetActive(false);
+            }
+        }*/
     }
 
     private void CheckInput()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !isAttacking)
         {
             OnAttack();
         }
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && !isAttacking)
         {
             OnBlast();
         }
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKeyDown(KeyCode.Mouse1) && !isAttacking)
         {
             OnShoot();
         }
@@ -59,21 +74,14 @@ public class PlayerAttack : MonoBehaviour
 
     private void OnAttack()
     {
-        if (!isAttacking)
-        {
-            wind.SetActive(true);
-            isAttacking = true;
-        }
+        wind.SetActive(true);
+        isAttacking = true;
     }
 
     private void OnBlast()
     {
-        if(!isAttacking)
-        {
-            thunder.SetActive(true);
-            isAttacking = true;
-            attackTimer = 0f; // Reset the timer for the blast attack
-        }
+        thunder.SetActive(true);
+        isAttacking = true;
     }
 
     private void OnShoot()

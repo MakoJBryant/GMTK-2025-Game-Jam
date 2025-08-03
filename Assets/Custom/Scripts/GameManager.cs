@@ -1,5 +1,5 @@
 using System.Runtime.InteropServices.WindowsRuntime;
-using UnityEditor.Overlays;
+//using UnityEditor.Overlays;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -34,6 +34,15 @@ public class GameManager : MonoBehaviour
         data.LoadData();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Debug.Log("Quit Game");
+            Application.Quit();
+        }
+    }
+
     public void HandleWin()
     {
         bool enterSacrifice = false;
@@ -50,14 +59,18 @@ public class GameManager : MonoBehaviour
 
     public void HandleDeath()
     {
-        data.IncreaseDifficulty();
-        LoadRandomFightScene();
+        StartCoroutine(player.visualControl.PlayerDeath(false));
     }
 
-    public void HandleReset()
+    public void HandleSacrifice()
     {
         data.IncreaseDifficulty();
-        StartCoroutine(player.visualControl.SacrificeSelf());
+        StartCoroutine(player.visualControl.PlayerDeath(true));
+    }
+
+    public void LoadGameOverScene()
+    {
+        SceneManager.LoadScene("TitleScene");
     }
 
     public void LoadRandomFightScene()

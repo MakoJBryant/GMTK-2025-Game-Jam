@@ -888,7 +888,7 @@ GameObject:
   - component: {fileID: 7246500612594313273}
   - component: {fileID: 3140853641011457816}
   - component: {fileID: 6985833035813746863}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wind
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1351,7 +1351,7 @@ GameObject:
   - component: {fileID: 339338117300165249}
   - component: {fileID: 6683773985980885094}
   - component: {fileID: 1832780468730917022}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Gust
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6244,7 +6244,7 @@ GameObject:
   - component: {fileID: 4561838364207351440}
   - component: {fileID: 134348621120224938}
   - component: {fileID: 8336057625352075541}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Thunder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6480,7 +6480,7 @@ GameObject:
   - component: {fileID: 4989486758175501606}
   - component: {fileID: 6408839336956352173}
   - component: {fileID: 5900232066480995082}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bolt
   m_TagString: Untagged
   m_Icon: {fileID: 0}

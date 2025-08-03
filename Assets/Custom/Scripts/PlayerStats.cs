@@ -10,6 +10,7 @@ public class PlayerStats : MonoBehaviour
 
     [SerializeField] private float power = 5f;
     public float Power => power;
+    public bool iFrame = false; // Invincibility frame flag
 
     Animator animator;
 
@@ -24,7 +25,12 @@ public class PlayerStats : MonoBehaviour
     {
         animator.SetTrigger("Damaged");
         Debug.Log("Player took " + amount + "damage");
-        if(shield > 0)
+        if (iFrame)
+        {
+            Debug.Log("Player is invincible, no damage taken.");
+            return; // If player is invincible, ignore damage
+        }
+        if (shield > 0)
         {
             shield -= amount;
             if(shield < 0)
@@ -44,6 +50,7 @@ public class PlayerStats : MonoBehaviour
             currentHealth = 0; // Ensure health does not go below 0
             Debug.Log("Player is dead!");
             // Handle player death (e.g., trigger game over, respawn, etc.)
+            GameManager.instance.HandleDeath();
         }
     }
 
