@@ -1,5 +1,5 @@
 using System.Runtime.InteropServices.WindowsRuntime;
-using UnityEditor.Overlays;
+//using UnityEditor.Overlays;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -32,6 +32,15 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         data.LoadData();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Debug.Log("Quit Game");
+            Application.Quit();
+        }
     }
 
     public void HandleWin()

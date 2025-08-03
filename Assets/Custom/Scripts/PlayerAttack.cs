@@ -7,10 +7,10 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private GameObject wind;
     [SerializeField] private GameObject thunder;
     [SerializeField] private float attackDuration = 0.3f; // Duration of the attack animation
-    [SerializeField] private float blastDuration = .3f;
-    [SerializeField] private float blastTimer = 0;
+    //[SerializeField] private float blastDuration = .3f;
+    //[SerializeField] private float blastTimer = 0;
     [SerializeField] private float attackTimer = 0f; // Timer to track the attack duration
-    [SerializeField] private bool isBlasting = false; // lmao
+    //SerializeField] private bool isBlasting = false; // lmao
     [SerializeField] private bool isAttacking = false;
 
     //ranged
